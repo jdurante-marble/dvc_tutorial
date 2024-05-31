@@ -35,21 +35,21 @@ stages:
       size: 4158
     params:
       params.yaml:
-        featurize.max_features: 1200
-        featurize.ngrams: 2
+        featurize.max_features: 2500
+        featurize.ngrams: 3
     outs:
     - path: data/features
       hash: md5
-      md5: 7f79033109c8fa470aa817245ce86102.dir
-      size: 4192268
+      md5: 89b7bc5c43d6116cbf8b020fe8eaa567.dir
+      size: 5127428
       nfiles: 2
   train:
     cmd: python src/train.py data/features model.pkl
     deps:
     - path: data/features
       hash: md5
-      md5: 7f79033109c8fa470aa817245ce86102.dir
-      size: 4192268
+      md5: 89b7bc5c43d6116cbf8b020fe8eaa567.dir
+      size: 5127428
       nfiles: 2
     - path: src/train.py
       hash: md5
@@ -63,20 +63,20 @@ stages:
     outs:
     - path: model.pkl
       hash: md5
-      md5: 7037bce95058349350ab01d72c3efdbf
-      size: 2181576
+      md5: 1e157deec1ee4326342aaf0385f2f78d
+      size: 2389265
   evaluate:
     cmd: python src/evaluate.py model.pkl data/features
     deps:
     - path: data/features
       hash: md5
-      md5: 7f79033109c8fa470aa817245ce86102.dir
-      size: 4192268
+      md5: 89b7bc5c43d6116cbf8b020fe8eaa567.dir
+      size: 5127428
       nfiles: 2
     - path: model.pkl
       hash: md5
-      md5: 7037bce95058349350ab01d72c3efdbf
-      size: 2181576
+      md5: 1e157deec1ee4326342aaf0385f2f78d
+      size: 2389265
     - path: src/evaluate.py
       hash: md5
       md5: 125a241720fa69befdb419a3b75e5bfb
@@ -84,6 +84,6 @@ stages:
     outs:
     - path: eval
       hash: md5
-      md5: 95be30a7fd529433d47c0cd2d7efe44e.dir
-      size: 1183608
+      md5: 0f87e3143172aa9c682038192e981f62.dir
+      size: 1180798
       nfiles: 8
