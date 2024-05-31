@@ -2,3 +2,4 @@ mock_external_storage/
 /model.pkl
 cats-dogs
 /eval
+/cd_data

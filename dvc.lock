@@ -1,26 +1,18 @@
 schema: '2.0'
 stages:
   prepare:
-    cmd: python src/prepare.py data/data.xml
+    cmd: python cd_src/prepare.py
     deps:
-    - path: data/data.xml
+    - path: cd_src/prepare.py
       hash: md5
-      md5: 22a1a2931c8370d3aeedd7183606fd7f
-      size: 14445097
-    - path: src/prepare.py
-      hash: md5
-      md5: f54d670ac8a4f63206781fc31d1f2651
-      size: 2231
-    params:
-      params.yaml:
-        prepare.seed: 20170428
-        prepare.split: 0.2
+      md5: ff4ae76a9f59db7f4ccf019858fccaa1
+      size: 685
     outs:
-    - path: data/prepared
+    - path: data/raw
       hash: md5
-      md5: 153aad06d376b6595932470e459ef42a.dir
-      size: 8437363
-      nfiles: 2
+      md5: 0961ec15c3d30f15e1af55d2cc39d8f5.dir
+      size: 45598094
+      nfiles: 2000
   featurize:
     cmd: python src/featurization.py data/prepared data/features
     deps:
