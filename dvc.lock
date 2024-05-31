@@ -36,56 +36,45 @@ stages:
       size: 5127428
       nfiles: 2
   train:
-    cmd: python src/train.py data/features model.pkl
+    cmd: python cd_src/train.py
     deps:
-    - path: data/features
+    - path: cd_src/train.py
       hash: md5
-      md5: 89b7bc5c43d6116cbf8b020fe8eaa567.dir
-      size: 5127428
-      nfiles: 2
-    - path: src/train.py
+      md5: 3bd8568996f252d2723da2a204db02a4
+      size: 2998
+    - path: data/processed
       hash: md5
-      md5: 324001573ed724e5ae092226fcf9ca30
-      size: 1666
-    params:
-      params.yaml:
-        train.min_split: 0.01
-        train.n_est: 50
-        train.seed: 20170428
+      md5: 642841f765bb921d3acd3991fc7635c2.dir
+      size: 25810846
+      nfiles: 2800
     outs:
-    - path: model.pkl
+    - path: cd_models/autoencoder.h5
       hash: md5
-      md5: 1e157deec1ee4326342aaf0385f2f78d
-      size: 2389265
+      md5: c9904ed1019024d2a3abacb720858c4a
+      size: 37925320
   evaluate:
-    cmd: python src/evaluate.py model.pkl data/features
+    cmd: python cd_src/evaluate.py
     deps:
-    - path: data/features
+    - path: cd_models/autoencoder.h5
       hash: md5
-      md5: 89b7bc5c43d6116cbf8b020fe8eaa567.dir
-      size: 5127428
-      nfiles: 2
-    - path: model.pkl
+      md5: c9904ed1019024d2a3abacb720858c4a
+      size: 37925320
+    - path: cd_src/evaluate.py
       hash: md5
-      md5: 1e157deec1ee4326342aaf0385f2f78d
-      size: 2389265
-    - path: src/evaluate.py
-      hash: md5
-      md5: 125a241720fa69befdb419a3b75e5bfb
-      size: 3300
+      md5: 10dfe0f82251838a00f3136e8eb4eef5
+      size: 688
     outs:
-    - path: eval
+    - path: cd_metrics/eval.txt
       hash: md5
-      md5: 0f87e3143172aa9c682038192e981f62.dir
-      size: 1180798
-      nfiles: 8
+      md5: 23c48b2b9f18e0062b4687a50ab03a06
+      size: 26
   preprocess:
     cmd: python cd_src/preprocess.py
     deps:
     - path: cd_src/preprocess.py
       hash: md5
-      md5: b67aceb9903a83dc23061ce79aa382ab
-      size: 1032
+      md5: 680702481eaf841a46699e40b62e4c04
+      size: 2246
     - path: data/raw
       hash: md5
       md5: 0961ec15c3d30f15e1af55d2cc39d8f5.dir
@@ -94,6 +83,6 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: c998b09b6d9ce6e8505606e8a9e26201.dir
-      size: 18439045
-      nfiles: 2000
+      md5: 642841f765bb921d3acd3991fc7635c2.dir
+      size: 25810846
+      nfiles: 2800
